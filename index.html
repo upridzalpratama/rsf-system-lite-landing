@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scholarvein RSF System Lite — Kelola Konferensi Ilmiah Anda dengan Tenang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --bg-alt: #F3EEE4;
+    --surface: #FFFFFF;
+    --ink: #16232F;
+    --ink-soft: #4A5866;
+    --muted: #7A8695;
+    --accent: #1E3A5F;
+    --accent-warm: #B8873B;
+    --line: #E4DDCF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.12; font-weight: 500; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.2; }
+  h3 { font-size: 1.35rem; line-height: 1.35; }
+
+  p { color: var(--ink-soft); }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* Navbar */
+  .nav {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .brand span {
+    color: var(--accent-warm);
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .nav-cta:hover { background: #142a44; }
+
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    padding: 100px 0 90px;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero p.lead {
+    font-size: 1.2rem;
+    max-width: 640px;
+    margin-top: 26px;
+    color: var(--ink-soft);
+  }
+  .hero-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 16px 30px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #142a44; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    padding: 16px 28px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    border: 1px solid var(--accent);
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--accent); color: #fff; }
+
+  .hero-meta {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+  .hero-meta strong {
+    display: block;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  /* Section base */
+  section { padding: 90px 0; }
+  .section-alt { background: var(--bg-alt); }
+  .section-dark { background: #16232F; color: #F3EEE4; }
+  .section-dark h2, .section-dark h3 { color: #F9F3E6; }
+  .section-dark p { color: #B7BDC5; }
+
+  .section-head {
+    max-width: 720px;
+    margin-bottom: 60px;
+  }
+  .section-head .eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+  .section-head p {
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+
+  /* Problem list */
+  .problems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .problem-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .problem-card .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--accent-warm);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .problem-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .problem-card p { font-size: 0.98rem; }
+
+  /* Values grid */
+  .values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px 48px;
+  }
+  .value-item {
+    padding-top: 28px;
+    border-top: 2px solid var(--accent-warm);
+  }
+  .value-item h3 {
+    margin-bottom: 12px;
+  }
+  .value-item p { font-size: 1rem; }
+
+  /* Journey */
+  .journey {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4px;
+    counter-reset: step;
+  }
+  .step {
+    background: rgba(255,255,255,0.04);
+    padding: 32px 24px;
+    border-left: 3px solid var(--accent-warm);
+    counter-increment: step;
+  }
+  .step::before {
+    content: "0" counter(step);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--accent-warm);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .step h3 {
+    font-size: 1.15rem;
+    color: #F9F3E6;
+    margin-bottom: 10px;
+  }
+  .step p { font-size: 0.95rem; color: #B7BDC5; }
+
+  /* Target grid */
+  .targets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .target {
+    padding: 40px 32px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .target:last-child { border-right: none; }
+  .target h3 { font-size: 1.15rem; margin-bottom: 12px; }
+  .target p { font-size: 0.98rem; }
+
+  /* Messages / Two column */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .message-list {
+    list-style: none;
+  }
+  .message-list li {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .message-list li:last-child { border-bottom: none; }
+  .message-list .m-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--accent-warm);
+    font-weight: 600;
+    min-width: 32px;
+  }
+  .message-list .m-text {
+    font-size: 1.08rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .quote-card {
+    background: var(--bg-alt);
+    padding: 48px 40px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .quote-card blockquote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.6rem;
+    line-height: 1.35;
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .quote-card cite {
+    display: block;
+    margin-top: 24px;
+    font-style: normal;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    color: #fff;
+    padding: 90px 0;
+    text-align: center;
+  }
+  .cta-section h2 { color: #fff; margin-bottom: 20px; }
+  .cta-section p {
+    color: #C6D2E0;
+    font-size: 1.15rem;
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .cta-section .btn-primary {
+    background: var(--accent-warm);
+    padding: 18px 40px;
+    font-size: 1.05rem;
+  }
+  .cta-section .btn-primary:hover { background: #a1762f; }
+  .cta-note {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: #96A5B7;
+  }
+
+  /* Footer */
+  footer {
+    background: #0F1A24;
+    color: #8A96A5;
+    padding: 60px 0 40px;
+    font-size: 0.92rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 700px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  footer h4 {
+    color: #F9F3E6;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a:hover { color: #F9F3E6; }
+  .footer-bottom {
+    border-top: 1px solid #22303C;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.3rem;
+    color: #F9F3E6;
+    margin-bottom: 12px;
+  }
+  .footer-brand span { color: var(--accent-warm); }
+
+  /* Smooth reveal on hover for cards */
+  .problem-card, .target { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .problem-card:hover, .target:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(22, 35, 47, 0.08);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="brand">Scholar<span>vein</span></div>
+    <div class="nav-links">
+      <a href="#masalah">Masalah</a>
+      <a href="#solusi">Solusi</a>
+      <a href="#alur">Alur Kerja</a>
+      <a href="#segmen">Untuk Siapa</a>
+    </div>
+    <a href="#konsultasi" class="nav-cta">Jadwalkan Konsultasi</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">RSF System Lite</span>
+    <h1>Kelola konferensi ilmiah Anda<br />dengan tenang dan profesional.</h1>
+    <p class="lead">
+      Sistem manajemen konferensi yang dirancang untuk universitas, fakultas, dan penyelenggara pertama kali. Mulai dari pengumpulan naskah hingga hari acara, semua berjalan dalam satu portal. Tim kami mendampingi Anda selama dua minggu pertama sampai konferensi siap menerima submission.
+    </p>
+    <div class="hero-actions">
+      <a href="#konsultasi" class="btn-primary">Jadwalkan Konsultasi Gratis</a>
+      <a href="#solusi" class="btn-secondary">Pelajari Cara Kerjanya</a>
+    </div>
+
+    <div class="hero-meta">
+      <div>
+        <strong>1 Portal</strong>
+        Semua kebutuhan konferensi dalam satu sistem terintegrasi.
+      </div>
+      <div>
+        <strong>2 Minggu</strong>
+        Pendampingan intensif dari tim Scholarvein hingga go live.
+      </div>
+      <div>
+        <strong>0 Coding</strong>
+        Anda tidak perlu membangun sistem sendiri dari nol.
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="masalah" class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Masalah yang Sering Terjadi</span>
+      <h2>Masih menerima submission lewat email dan spreadsheet?</h2>
+      <p>Banyak panitia konferensi kehilangan waktu berjam jam hanya untuk urusan administrasi. Berikut kondisi yang mungkin Anda alami saat ini.</p>
+    </div>
+
+    <div class="problems">
+      <div class="problem-card">
+        <span class="num">01</span>
+        <h3>Naskah tercecer di kotak masuk</h3>
+        <p>Sulit melacak versi terbaru, mudah terlewat, dan rentan hilang saat panitia berganti.</p>
+      </div>
+      <div class="problem-card">
+        <span class="num">02</span>
+        <h3>Proses review tidak terlacak</h3>
+        <p>Komunikasi bolak balik dengan reviewer memakan waktu dan sulit dipantau kemajuannya.</p>
+      </div>
+      <div class="problem-card">
+        <span class="num">03</span>
+        <h3>Data peserta tersebar</h3>
+        <p>Registrasi, pembayaran, dan konfirmasi hadir tercatat di file berbeda tanpa integrasi.</p>
+      </div>
+      <div class="problem-card">
+        <span class="num">04</span>
+        <h3>Panitia kewalahan menjelang deadline</h3>
+        <p>Beban kerja menumpuk di minggu terakhir karena tidak ada sistem yang mengotomasi alur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solusi">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Solusi Kami</span>
+      <h2>Satu sistem yang sederhana, terintegrasi, dan mudah digunakan.</h2>
+      <p>RSF System Lite adalah pintu masuk yang terjangkau menuju conference management yang profesional. Dirancang untuk institusi dengan anggaran terbatas namun tetap ingin menjaga kualitas penyelenggaraan.</p>
+    </div>
+
+    <div class="values">
+      <div class="value-item">
+        <h3>Terjangkau</h3>
+        <p>Biaya sewa yang sesuai skala konferensi Anda. Jauh lebih hemat daripada membangun sistem sendiri.</p>
+      </div>
+      <div class="value-item">
+        <h3>Terintegrasi</h3>
+        <p>Submission, review, registrasi, dan pengumuman terhubung dalam satu portal. Dapat disesuaikan dengan kebutuhan Anda.</p>
+      </div>
+      <div class="value-item">
+        <h3>Mudah Digunakan</h3>
+        <p>Antarmuka yang bersih dan intuitif. Panitia dapat langsung menggunakannya setelah sesi pelatihan singkat.</p>
+      </div>
+      <div class="value-item">
+        <h3>Implementasi Terpandu</h3>
+        <p>Tim kami membantu setup, memberikan tutorial, serta mendampingi selama dua minggu pertama.</p>
+      </div>
+      <div class="value-item">
+        <h3>Jalur Upgrade</h3>
+        <p>Saat konferensi Anda berkembang, tersedia layanan Co Organizer dan Dedicated Conference.</p>
+      </div>
+      <div class="value-item">
+        <h3>Kendali di Tangan Anda</h3>
+        <p>Biaya pendaftaran presenter dapat Anda tentukan sendiri sesuai kebijakan penyelenggara.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="alur" class="section-dark">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" style="color: var(--accent-warm);">Alur Kerja</span>
+      <h2>Enam langkah dari perencanaan hingga go live.</h2>
+      <p>Proses yang jelas dan terstruktur sehingga Anda tahu persis apa yang terjadi di setiap tahap.</p>
+    </div>
+
+    <div class="journey">
+      <div class="step">
+        <h3>Assessment</h3>
+        <p>Kami memetakan kebutuhan konferensi Anda bersama tim penyelenggara.</p>
+      </div>
+      <div class="step">
+        <h3>MoA</h3>
+        <p>Penandatanganan kesepakatan kerja sama sebagai dasar layanan.</p>
+      </div>
+      <div class="step">
+        <h3>Subdomain Konferensi</h3>
+        <p>Kami siapkan portal konferensi dengan subdomain khusus Anda.</p>
+      </div>
+      <div class="step">
+        <h3>Tutorial dan Pelatihan</h3>
+        <p>Sesi panduan penggunaan sistem untuk panitia inti.</p>
+      </div>
+      <div class="step">
+        <h3>Pendampingan Dua Minggu</h3>
+        <p>Tim support kami siap membantu selama masa transisi awal.</p>
+      </div>
+      <div class="step">
+        <h3>Go Live</h3>
+        <p>Konferensi Anda siap menerima submission dari registrant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="segmen">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Untuk Siapa</span>
+      <h2>Dirancang untuk institusi yang serius menyelenggarakan konferensi.</h2>
+    </div>
+
+    <div class="targets">
+      <div class="target">
+        <h3>Universitas dan Fakultas</h3>
+        <p>Menyelenggarakan konferensi akademik tanpa perlu tim IT internal yang besar.</p>
+      </div>
+      <div class="target">
+        <h3>Research Center</h3>
+        <p>Memfasilitasi diseminasi hasil riset dengan sistem yang kredibel.</p>
+      </div>
+      <div class="target">
+        <h3>Penyelenggara Pertama Kali</h3>
+        <p>Punya panduan lengkap dan pendampingan agar konferensi pertama berjalan lancar.</p>
+      </div>
+      <div class="target">
+        <h3>Organizer yang Ingin Naik Kelas</h3>
+        <p>Beralih dari email dan spreadsheet ke sistem yang lebih profesional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <span class="eyebrow" style="font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-warm); font-weight: 600; margin-bottom: 18px; display: inline-block;">Mengapa Scholarvein</span>
+        <h2 style="margin-bottom: 24px;">Lima alasan RSF System Lite cocok untuk Anda.</h2>
+        <p>Kami percaya bahwa setiap konferensi ilmiah berhak mendapatkan sistem yang layak, tanpa harus menguras anggaran atau menunggu tim developer.</p>
+      </div>
+      <ul class="message-list">
+        <li>
+          <span class="m-num">1.</span>
+          <span class="m-text">Anda tidak perlu membangun sistem sendiri.</span>
+        </li>
+        <li>
+          <span class="m-num">2.</span>
+          <span class="m-text">Conference management yang sederhana dan profesional.</span>
+        </li>
+        <li>
+          <span class="m-num">3.</span>
+          <span class="m-text">Didampingi dari awal hingga siap menerima submission.</span>
+        </li>
+        <li>
+          <span class="m-num">4.</span>
+          <span class="m-text">Bayar sesuai skala konferensi Anda.</span>
+        </li>
+        <li>
+          <span class="m-num">5.</span>
+          <span class="m-text">Tumbuh bersama kebutuhan konferensi di masa depan.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="quote-card">
+      <blockquote>
+        &ldquo;Conference Management Made Simple. Dari persiapan hingga go live, kami dampingi.&rdquo;
+      </blockquote>
+      <cite>Filosofi kerja tim Scholarvein.</cite>
+    </div>
+  </div>
+</section>
+
+<section id="konsultasi" class="cta-section">
+  <div class="container">
+    <h2>Siap menyelenggarakan konferensi Anda?</h2>
+    <p>Jadwalkan sesi konsultasi gratis dengan tim kami. Kami akan bantu Anda memahami kebutuhan, alur kerja, dan cara memulai dengan RSF System Lite.</p>
+    <a href="mailto:hello@scholarvein.com" class="btn-primary">Jadwalkan Konsultasi</a>
+    <div class="cta-note">Tanpa biaya konsultasi. Tanpa komitmen di awal.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Scholar<span>vein</span></div>
+        <p style="max-width: 380px;">RSF System Lite adalah bagian dari layanan Research Synergy Foundation untuk mendukung penyelenggaraan konferensi ilmiah yang profesional.</p>
+      </div>
+      <div>
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="#solusi">RSF System Lite</a></li>
+          <li><a href="#">Co Organizer</a></li>
+          <li><a href="#">Dedicated Conference</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak</h4>
+        <ul>
+          <li><a href="mailto:hello@scholarvein.com">hello@scholarvein.com</a></li>
+          <li><a href="#">Jadwalkan Konsultasi</a></li>
+          <li><a href="#">Pusat Bantuan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Scholarvein by Research Synergy Foundation.</div>
+      <div>Semua hak dilindungi.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
