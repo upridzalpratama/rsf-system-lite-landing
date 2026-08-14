@@ -512,6 +512,84 @@
     box-shadow: 0 12px 32px rgba(22, 35, 47, 0.08);
   }
 
+  /* Partners section */
+  .partners-section {
+    padding: 56px 0 64px;
+    background: #FFFFFF;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 640px) {
+    .partners-section { padding: 72px 0 80px; }
+  }
+  .partners-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 40px;
+  }
+  .partners-head .eyebrow {
+    color: var(--accent-warm);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  .partners-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 12px;
+  }
+  .partners-head p {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 8px;
+    align-items: center;
+    justify-items: center;
+  }
+  @media (min-width: 520px) {
+    .partners-grid { grid-template-columns: repeat(4, 1fr); gap: 16px 12px; }
+  }
+  @media (min-width: 720px) {
+    .partners-grid { grid-template-columns: repeat(5, 1fr); gap: 20px 16px; }
+  }
+  @media (min-width: 960px) {
+    .partners-grid { grid-template-columns: repeat(6, 1fr); gap: 24px 20px; }
+  }
+  @media (min-width: 1120px) {
+    .partners-grid { grid-template-columns: repeat(7, 1fr); }
+  }
+  .partner {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  @media (min-width: 640px) {
+    .partner { height: 80px; padding: 10px; }
+  }
+  .partner img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) contrast(0.9);
+    opacity: 0.72;
+    transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  }
+  .partner:hover img {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
   /* Mobile fine-tuning */
   @media (max-width: 480px) {
     body { font-size: 17px; }
@@ -569,6 +647,73 @@
     </div>
   </div>
 </header>
+
+
+<section id="partner" class="partners-section">
+  <div class="container">
+    <div class="partners-head">
+      <span class="eyebrow">Dipercaya oleh</span>
+      <h2>Telah bekerja sama dengan puluhan institusi.</h2>
+      <p>Universitas, fakultas, research center, dan lembaga di dalam dan luar negeri telah menyelenggarakan konferensi bersama ScholarVein.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner"><img src="partners/AOU.png" alt="AOU" loading="lazy" /></div>
+      <div class="partner"><img src="partners/BKT%20KEMENHUB.png" alt="BKT KEMENHUB" loading="lazy" /></div>
+      <div class="partner"><img src="partners/BMN%20Institute.png" alt="BMN Institute" loading="lazy" /></div>
+      <div class="partner"><img src="partners/CCC.png" alt="CCC" loading="lazy" /></div>
+      <div class="partner"><img src="partners/Emerald.png" alt="Emerald" loading="lazy" /></div>
+      <div class="partner"><img src="partners/FEB%20UNISBA.png" alt="FEB UNISBA" loading="lazy" /></div>
+      <div class="partner"><img src="partners/Halal%20Science%20Center%20Chulalongkorn%20University.png" alt="Halal Science Center Chulalongkorn University" loading="lazy" /></div>
+      <div class="partner"><img src="partners/IPES%20BS.png" alt="IPES BS" loading="lazy" /></div>
+      <div class="partner"><img src="partners/PASCA%20UNAIR.png" alt="PASCA UNAIR" loading="lazy" /></div>
+      <div class="partner"><img src="partners/POLINES.png" alt="POLINES" loading="lazy" /></div>
+      <div class="partner"><img src="partners/Perbanas.png" alt="Perbanas" loading="lazy" /></div>
+      <div class="partner"><img src="partners/SEARA.png" alt="SEARA" loading="lazy" /></div>
+      <div class="partner"><img src="partners/SIU.png" alt="SIU" loading="lazy" /></div>
+      <div class="partner"><img src="partners/Telkom%20Corp.png" alt="Telkom Corp" loading="lazy" /></div>
+      <div class="partner"><img src="partners/Tongmyong%20University.png" alt="Tongmyong University" loading="lazy" /></div>
+      <div class="partner"><img src="partners/UIA.png" alt="UIA" loading="lazy" /></div>
+      <div class="partner"><img src="partners/UMJ.png" alt="UMJ" loading="lazy" /></div>
+      <div class="partner"><img src="partners/UP.png" alt="UP" loading="lazy" /></div>
+      <div class="partner"><img src="partners/UPNYK.png" alt="UPNYK" loading="lazy" /></div>
+      <div class="partner"><img src="partners/WCC.png" alt="WCC" loading="lazy" /></div>
+      <div class="partner"><img src="partners/e-Halal.png" alt="e Halal" loading="lazy" /></div>
+      <div class="partner"><img src="partners/fia%20ui.png" alt="fia ui" loading="lazy" /></div>
+      <div class="partner"><img src="partners/nwu%20(2).png" alt="nwu (2)" loading="lazy" /></div>
+      <div class="partner"><img src="partners/nwu.png" alt="nwu" loading="lazy" /></div>
+      <div class="partner"><img src="partners/13.png" alt="Partner 13" loading="lazy" /></div>
+      <div class="partner"><img src="partners/14.png" alt="Partner 14" loading="lazy" /></div>
+      <div class="partner"><img src="partners/15.png" alt="Partner 15" loading="lazy" /></div>
+      <div class="partner"><img src="partners/16.png" alt="Partner 16" loading="lazy" /></div>
+      <div class="partner"><img src="partners/17.png" alt="Partner 17" loading="lazy" /></div>
+      <div class="partner"><img src="partners/19.png" alt="Partner 19" loading="lazy" /></div>
+      <div class="partner"><img src="partners/20.png" alt="Partner 20" loading="lazy" /></div>
+      <div class="partner"><img src="partners/21.png" alt="Partner 21" loading="lazy" /></div>
+      <div class="partner"><img src="partners/22.png" alt="Partner 22" loading="lazy" /></div>
+      <div class="partner"><img src="partners/23.png" alt="Partner 23" loading="lazy" /></div>
+      <div class="partner"><img src="partners/24.png" alt="Partner 24" loading="lazy" /></div>
+      <div class="partner"><img src="partners/25.png" alt="Partner 25" loading="lazy" /></div>
+      <div class="partner"><img src="partners/26.png" alt="Partner 26" loading="lazy" /></div>
+      <div class="partner"><img src="partners/27.png" alt="Partner 27" loading="lazy" /></div>
+      <div class="partner"><img src="partners/28.png" alt="Partner 28" loading="lazy" /></div>
+      <div class="partner"><img src="partners/29.png" alt="Partner 29" loading="lazy" /></div>
+      <div class="partner"><img src="partners/30.png" alt="Partner 30" loading="lazy" /></div>
+      <div class="partner"><img src="partners/31.png" alt="Partner 31" loading="lazy" /></div>
+      <div class="partner"><img src="partners/32.png" alt="Partner 32" loading="lazy" /></div>
+      <div class="partner"><img src="partners/33.png" alt="Partner 33" loading="lazy" /></div>
+      <div class="partner"><img src="partners/34.png" alt="Partner 34" loading="lazy" /></div>
+      <div class="partner"><img src="partners/35.png" alt="Partner 35" loading="lazy" /></div>
+      <div class="partner"><img src="partners/36.png" alt="Partner 36" loading="lazy" /></div>
+      <div class="partner"><img src="partners/37.png" alt="Partner 37" loading="lazy" /></div>
+      <div class="partner"><img src="partners/38.png" alt="Partner 38" loading="lazy" /></div>
+      <div class="partner"><img src="partners/39.png" alt="Partner 39" loading="lazy" /></div>
+      <div class="partner"><img src="partners/40.png" alt="Partner 40" loading="lazy" /></div>
+      <div class="partner"><img src="partners/41.png" alt="Partner 41" loading="lazy" /></div>
+      <div class="partner"><img src="partners/42.png" alt="Partner 42" loading="lazy" /></div>
+      <div class="partner"><img src="partners/43.png" alt="Partner 43" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
 
 <section id="masalah" class="section-alt">
   <div class="container">
