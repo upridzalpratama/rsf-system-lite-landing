@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ScholarOSS by ScholarVein — Kelola Konferensi Ilmiah Anda dengan Tenang</title>
-<meta name="description" content="ScholarOSS adalah conference management system yang terjangkau, terintegrasi, dan mudah digunakan. Bagian dari layanan ScholarVein.">
+<title>ScholarOSS by ScholarVein — Run Your Academic Conference with Confidence</title>
+<meta name="description" content="ScholarOSS is an affordable, integrated, and easy to use conference management system. Part of the ScholarVein family.">
 <link rel="icon" type="image/png" href="logo-scholaross.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,9 +25,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
@@ -37,23 +35,22 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
   img { max-width: 100%; height: auto; display: block; }
-
   h1, h2, h3, h4 {
     font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     letter-spacing: -0.01em;
     color: var(--ink);
   }
-
   h1 { font-size: clamp(2.1rem, 5vw, 3.8rem); line-height: 1.15; font-weight: 500; }
   h2 { font-size: clamp(1.7rem, 3.6vw, 2.7rem); line-height: 1.2; }
   h3 { font-size: 1.35rem; line-height: 1.35; }
-
   p { color: var(--ink-soft); }
-
   a { color: inherit; text-decoration: none; }
+
+  /* Language switching */
+  html[lang="en"] [data-lang="id"] { display: none !important; }
+  html[lang="id"] [data-lang="en"] { display: none !important; }
 
   .container {
     width: 100%;
@@ -65,16 +62,52 @@
     .container { padding: 0 32px; }
   }
 
-  /* Top ribbon */
+  /* Top ribbon with language toggle */
   .ribbon {
     background: var(--ink);
     color: #EFE9DC;
-    text-align: center;
-    padding: 10px 16px;
+    padding: 8px 16px;
     font-size: 0.85rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
   }
-  .ribbon strong { color: var(--accent-warm-2); font-weight: 600; }
+  .ribbon-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .ribbon-text { text-align: left; }
+  .ribbon-text strong { color: var(--accent-warm-2); font-weight: 600; }
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    color: #EFE9DC;
+    border: none;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang-toggle button:hover { color: #fff; }
+  .lang-toggle button.active {
+    background: var(--accent-warm-2);
+    color: #16232F;
+  }
 
   /* Navbar */
   .nav {
@@ -93,10 +126,7 @@
     align-items: center;
     gap: 20px;
   }
-  .brand-logo {
-    display: inline-flex;
-    align-items: center;
-  }
+  .brand-logo { display: inline-flex; align-items: center; }
   .brand-logo img { height: 38px; width: auto; }
   @media (min-width: 640px) {
     .brand-logo img { height: 44px; }
@@ -120,45 +150,24 @@
     transition: background 0.15s ease;
   }
   .nav-cta:hover { background: #142a44; }
-
   @media (min-width: 900px) {
     .nav-links { display: flex; }
   }
 
   /* Hero */
-  .hero {
-    padding: 72px 0 80px;
-  }
-  @media (min-width: 640px) {
-    .hero { padding: 96px 0 90px; }
-  }
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: 0.82rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent-warm);
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
+  .hero { padding: 72px 0 80px; }
+  @media (min-width: 640px) { .hero { padding: 96px 0 90px; } }
   .hero h1 br { display: none; }
-  @media (min-width: 720px) {
-    .hero h1 br { display: inline; }
-  }
-  /* Keep space between clauses when br is hidden */
+  @media (min-width: 720px) { .hero h1 br { display: inline; } }
   .hero h1 .break-space { display: inline; }
-  @media (min-width: 720px) {
-    .hero h1 .break-space { display: none; }
-  }
+  @media (min-width: 720px) { .hero h1 .break-space { display: none; } }
   .hero p.lead {
     font-size: 1.1rem;
     max-width: 640px;
     margin-top: 24px;
     color: var(--ink-soft);
   }
-  @media (min-width: 640px) {
-    .hero p.lead { font-size: 1.2rem; }
-  }
+  @media (min-width: 640px) { .hero p.lead { font-size: 1.2rem; } }
   .hero-actions {
     margin-top: 36px;
     display: flex;
@@ -207,18 +216,12 @@
     font-weight: 500;
     margin-bottom: 4px;
   }
-  @media (min-width: 640px) {
-    .hero-meta strong { font-size: 1.6rem; }
-  }
+  @media (min-width: 640px) { .hero-meta strong { font-size: 1.6rem; } }
 
   /* Section base */
   section { padding: 64px 0; }
-  @media (min-width: 640px) {
-    section { padding: 84px 0; }
-  }
-  @media (min-width: 900px) {
-    section { padding: 96px 0; }
-  }
+  @media (min-width: 640px) { section { padding: 84px 0; } }
+  @media (min-width: 900px) { section { padding: 96px 0; } }
   .section-alt { background: var(--bg-alt); }
   .section-dark { background: #16232F; color: #F3EEE4; }
   .section-dark h2, .section-dark h3 { color: #F9F3E6; }
@@ -228,25 +231,9 @@
     max-width: 720px;
     margin-bottom: 48px;
   }
-  @media (min-width: 640px) {
-    .section-head { margin-bottom: 60px; }
-  }
-  .eyebrow, .section-head .eyebrow {
-    font-size: 0.82rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent-warm);
-    font-weight: 700;
-    margin-bottom: 16px;
-    display: inline-block;
-  }
-  .section-head p {
-    font-size: 1.05rem;
-    margin-top: 18px;
-  }
-  @media (min-width: 640px) {
-    .section-head p { font-size: 1.1rem; }
-  }
+  @media (min-width: 640px) { .section-head { margin-bottom: 60px; } }
+  .section-head p { font-size: 1.05rem; margin-top: 18px; }
+  @media (min-width: 640px) { .section-head p { font-size: 1.1rem; } }
 
   /* Problem list */
   .problems {
@@ -260,9 +247,7 @@
     border: 1px solid var(--line);
     border-radius: 8px;
   }
-  @media (min-width: 640px) {
-    .problem-card { padding: 32px 28px; }
-  }
+  @media (min-width: 640px) { .problem-card { padding: 32px 28px; } }
   .problem-card .num {
     font-family: 'Fraunces', Georgia, serif;
     font-size: 1.4rem;
@@ -271,10 +256,7 @@
     margin-bottom: 12px;
     display: block;
   }
-  .problem-card h3 {
-    font-size: 1.15rem;
-    margin-bottom: 10px;
-  }
+  .problem-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
   .problem-card p { font-size: 0.98rem; }
 
   /* Values grid (6 items: 1 / 2 / 3 columns) */
@@ -283,41 +265,28 @@
     grid-template-columns: 1fr;
     gap: 32px 40px;
   }
-  @media (min-width: 640px) {
-    .values { grid-template-columns: repeat(2, 1fr); gap: 40px 48px; }
-  }
-  @media (min-width: 960px) {
-    .values { grid-template-columns: repeat(3, 1fr); }
-  }
-  .value-item {
-    padding-top: 24px;
-    border-top: 2px solid var(--accent-warm);
-  }
+  @media (min-width: 640px) { .values { grid-template-columns: repeat(2, 1fr); gap: 40px 48px; } }
+  @media (min-width: 960px) { .values { grid-template-columns: repeat(3, 1fr); } }
+  .value-item { padding-top: 24px; border-top: 2px solid var(--accent-warm); }
   .value-item h3 { margin-bottom: 10px; }
   .value-item p { font-size: 1rem; }
 
-  /* Journey (6 items: 1 / 2 / 3 columns, always symmetric) */
+  /* Journey (6 items: 1 / 2 / 3 columns) */
   .journey {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2px;
     counter-reset: step;
   }
-  @media (min-width: 640px) {
-    .journey { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 960px) {
-    .journey { grid-template-columns: repeat(3, 1fr); }
-  }
+  @media (min-width: 640px) { .journey { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .journey { grid-template-columns: repeat(3, 1fr); } }
   .step {
     background: rgba(255,255,255,0.04);
     padding: 28px 22px;
     border-left: 3px solid var(--accent-warm);
     counter-increment: step;
   }
-  @media (min-width: 640px) {
-    .step { padding: 32px 24px; }
-  }
+  @media (min-width: 640px) { .step { padding: 32px 24px; } }
   .step::before {
     content: "0" counter(step);
     font-family: 'Fraunces', Georgia, serif;
@@ -328,11 +297,7 @@
     margin-bottom: 12px;
     letter-spacing: 0.05em;
   }
-  .step h3 {
-    font-size: 1.15rem;
-    color: #F9F3E6;
-    margin-bottom: 10px;
-  }
+  .step h3 { font-size: 1.15rem; color: #F9F3E6; margin-bottom: 10px; }
   .step p { font-size: 0.95rem; color: #B7BDC5; }
 
   /* Target grid */
@@ -349,22 +314,18 @@
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  @media (min-width: 640px) {
-    .target { padding: 40px 32px; }
-  }
+  @media (min-width: 640px) { .target { padding: 40px 32px; } }
   .target h3 { font-size: 1.15rem; margin-bottom: 12px; }
   .target p { font-size: 0.98rem; }
 
-  /* Messages / Two column */
+  /* Two column */
   .two-col {
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
     align-items: center;
   }
-  @media (min-width: 900px) {
-    .two-col { grid-template-columns: 1fr 1fr; gap: 72px; }
-  }
+  @media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; gap: 72px; } }
   .message-list { list-style: none; }
   .message-list li {
     padding: 20px 0;
@@ -393,9 +354,7 @@
     border-radius: 8px;
     border: 1px solid var(--line);
   }
-  @media (min-width: 640px) {
-    .quote-card { padding: 48px 40px; }
-  }
+  @media (min-width: 640px) { .quote-card { padding: 48px 40px; } }
   .quote-card blockquote {
     font-family: 'Fraunces', Georgia, serif;
     font-size: 1.35rem;
@@ -404,9 +363,7 @@
     font-style: italic;
     font-weight: 400;
   }
-  @media (min-width: 640px) {
-    .quote-card blockquote { font-size: 1.6rem; }
-  }
+  @media (min-width: 640px) { .quote-card blockquote { font-size: 1.6rem; } }
   .quote-card cite {
     display: block;
     margin-top: 22px;
@@ -422,9 +379,7 @@
     padding: 72px 0;
     text-align: center;
   }
-  @media (min-width: 640px) {
-    .cta-section { padding: 96px 0; }
-  }
+  @media (min-width: 640px) { .cta-section { padding: 96px 0; } }
   .cta-section h2 { color: #fff; margin-bottom: 18px; }
   .cta-section p {
     color: #C6D2E0;
@@ -432,23 +387,15 @@
     max-width: 560px;
     margin: 0 auto 32px;
   }
-  @media (min-width: 640px) {
-    .cta-section p { font-size: 1.15rem; margin-bottom: 36px; }
-  }
+  @media (min-width: 640px) { .cta-section p { font-size: 1.15rem; margin-bottom: 36px; } }
   .cta-section .btn-primary {
     background: var(--accent-warm);
     padding: 16px 32px;
     font-size: 1rem;
   }
-  @media (min-width: 640px) {
-    .cta-section .btn-primary { padding: 18px 40px; font-size: 1.05rem; }
-  }
+  @media (min-width: 640px) { .cta-section .btn-primary { padding: 18px 40px; font-size: 1.05rem; } }
   .cta-section .btn-primary:hover { background: #c85918; }
-  .cta-note {
-    margin-top: 22px;
-    font-size: 0.88rem;
-    color: #96A5B7;
-  }
+  .cta-note { margin-top: 22px; font-size: 0.88rem; color: #96A5B7; }
 
   /* Footer */
   footer {
@@ -463,9 +410,7 @@
     gap: 32px;
     margin-bottom: 36px;
   }
-  @media (min-width: 720px) {
-    .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
-  }
+  @media (min-width: 720px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 48px; } }
   footer h4 {
     color: #F9F3E6;
     font-family: 'Inter', sans-serif;
@@ -505,7 +450,6 @@
     font-size: 0.85rem;
   }
 
-  /* Card hover */
   .problem-card, .target { transition: transform 0.25s ease, box-shadow 0.25s ease; }
   .problem-card:hover, .target:hover {
     transform: translateY(-3px);
@@ -519,32 +463,18 @@
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  @media (min-width: 640px) {
-    .partners-section { padding: 48px 0 52px; }
-  }
+  @media (min-width: 640px) { .partners-section { padding: 48px 0 52px; } }
   .partners-head {
     text-align: center;
     max-width: 640px;
     margin: 0 auto 24px;
   }
-  .partners-head .eyebrow {
-    color: var(--accent-warm);
-    font-size: 0.82rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 12px;
-    display: inline-block;
-  }
   .partners-head h2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 12px;
   }
-  .partners-head p {
-    font-size: 0.98rem;
-    color: var(--ink-soft);
-  }
-  /* Marquee partner logos (right to left, seamless loop) */
+  .partners-head p { font-size: 0.98rem; color: var(--ink-soft); }
+
   .marquee {
     position: relative;
     overflow: hidden;
@@ -582,10 +512,7 @@
     opacity: 0.75;
     transition: filter 0.25s ease, opacity 0.25s ease;
   }
-  .marquee-item:hover img {
-    filter: none;
-    opacity: 1;
-  }
+  .marquee-item:hover img { filter: none; opacity: 1; }
   @keyframes marquee-scroll {
     from { transform: translate3d(0, 0, 0); }
     to { transform: translate3d(-50%, 0, 0); }
@@ -597,7 +524,7 @@
   /* Mobile fine-tuning */
   @media (max-width: 480px) {
     body { font-size: 17px; }
-    .ribbon { font-size: 0.78rem; letter-spacing: 0.03em; }
+    .ribbon { font-size: 0.78rem; letter-spacing: 0.02em; }
     .nav-cta { padding: 9px 14px; font-size: 0.82rem; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
     .hero-actions { flex-direction: column; }
@@ -606,7 +533,18 @@
 </head>
 <body>
 
-<div class="ribbon">Bagian dari layanan <strong>ScholarVein</strong></div>
+<div class="ribbon">
+  <div class="ribbon-inner">
+    <div class="ribbon-text">
+      <span data-lang="en">Part of the <strong>ScholarVein</strong> family</span>
+      <span data-lang="id">Bagian dari layanan <strong>ScholarVein</strong></span>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language switcher">
+      <button type="button" data-lang-btn="en" class="active">EN</button>
+      <button type="button" data-lang-btn="id">ID</button>
+    </div>
+  </div>
+</div>
 
 <nav class="nav">
   <div class="container nav-inner">
@@ -614,161 +552,94 @@
       <img src="logo-scholaross.png" alt="ScholarOSS by ScholarVein" />
     </a>
     <div class="nav-links">
-      <a href="#masalah">Masalah</a>
-      <a href="#solusi">Solusi</a>
-      <a href="#alur">Alur Kerja</a>
-      <a href="#segmen">Untuk Siapa</a>
+      <a href="#masalah">
+        <span data-lang="en">Problems</span>
+        <span data-lang="id">Masalah</span>
+      </a>
+      <a href="#solusi">
+        <span data-lang="en">Solution</span>
+        <span data-lang="id">Solusi</span>
+      </a>
+      <a href="#alur">
+        <span data-lang="en">Process</span>
+        <span data-lang="id">Alur Kerja</span>
+      </a>
+      <a href="#segmen">
+        <span data-lang="en">Who It Is For</span>
+        <span data-lang="id">Untuk Siapa</span>
+      </a>
     </div>
-    <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="nav-cta">Jadwalkan Konsultasi</a>
+    <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="nav-cta">
+      <span data-lang="en">Schedule a Consultation</span>
+      <span data-lang="id">Jadwalkan Konsultasi</span>
+    </a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="container">
-    <h1>Kelola konferensi ilmiah Anda<span class="break-space"> </span><br />dengan tenang dan profesional.</h1>
+    <h1>
+      <span data-lang="en">Run your academic conference<span class="break-space"> </span><br />with confidence and clarity.</span>
+      <span data-lang="id">Kelola konferensi ilmiah Anda<span class="break-space"> </span><br />dengan tenang dan profesional.</span>
+    </h1>
     <p class="lead">
-      ScholarOSS adalah sistem manajemen konferensi yang dirancang untuk universitas, fakultas, dan penyelenggara pertama kali. Mulai dari pengumpulan naskah hingga hari acara, semua berjalan dalam satu portal. Tim kami mendampingi Anda selama dua minggu pertama sampai konferensi siap menerima submission.
+      <span data-lang="en">ScholarOSS is a conference management system built for universities, faculties, and first time organizers. From paper submission to conference day, everything runs on a single portal. Our team supports you for the first two weeks until your conference is ready to receive submissions.</span>
+      <span data-lang="id">ScholarOSS adalah sistem manajemen konferensi yang dirancang untuk universitas, fakultas, dan penyelenggara pertama kali. Mulai dari pengumpulan naskah hingga hari acara, semua berjalan dalam satu portal. Tim kami mendampingi Anda selama dua minggu pertama sampai konferensi siap menerima submission.</span>
     </p>
     <div class="hero-actions">
-      <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="btn-primary">Jadwalkan Konsultasi Gratis</a>
-      <a href="#solusi" class="btn-secondary">Pelajari Cara Kerjanya</a>
+      <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="btn-primary">
+        <span data-lang="en">Schedule a Free Consultation</span>
+        <span data-lang="id">Jadwalkan Konsultasi Gratis</span>
+      </a>
+      <a href="#solusi" class="btn-secondary">
+        <span data-lang="en">See How It Works</span>
+        <span data-lang="id">Pelajari Cara Kerjanya</span>
+      </a>
     </div>
 
     <div class="hero-meta">
       <div>
-        <strong>1 Portal</strong>
-        Semua kebutuhan konferensi dalam satu sistem terintegrasi.
+        <strong>
+          <span data-lang="en">1 Portal</span>
+          <span data-lang="id">1 Portal</span>
+        </strong>
+        <span data-lang="en">All conference needs in one integrated system.</span>
+        <span data-lang="id">Semua kebutuhan konferensi dalam satu sistem terintegrasi.</span>
       </div>
       <div>
-        <strong>2 Minggu</strong>
-        Pendampingan intensif dari tim ScholarVein hingga go live.
+        <strong>
+          <span data-lang="en">2 Weeks</span>
+          <span data-lang="id">2 Minggu</span>
+        </strong>
+        <span data-lang="en">Hands on guidance from the ScholarVein team until go live.</span>
+        <span data-lang="id">Pendampingan intensif dari tim ScholarVein hingga go live.</span>
       </div>
       <div>
-        <strong>0 Coding</strong>
-        Anda tidak perlu membangun sistem sendiri dari nol.
+        <strong>
+          <span data-lang="en">0 Coding</span>
+          <span data-lang="id">0 Coding</span>
+        </strong>
+        <span data-lang="en">You do not need to build a system from scratch.</span>
+        <span data-lang="id">Anda tidak perlu membangun sistem sendiri dari nol.</span>
       </div>
     </div>
   </div>
 </header>
 
-
 <section id="partner" class="partners-section">
   <div class="container">
     <div class="partners-head">
-      <h2>Telah bekerja sama dengan puluhan institusi.</h2>
-      <p>Universitas, fakultas, research center, dan lembaga di dalam dan luar negeri telah menyelenggarakan konferensi bersama ScholarVein.</p>
+      <h2>
+        <span data-lang="en">Trusted by dozens of institutions.</span>
+        <span data-lang="id">Telah bekerja sama dengan puluhan institusi.</span>
+      </h2>
+      <p>
+        <span data-lang="en">Universities, faculties, research centers, and organizations across Indonesia and abroad have run their conferences with ScholarVein.</span>
+        <span data-lang="id">Universitas, fakultas, research center, dan lembaga di dalam dan luar negeri telah menyelenggarakan konferensi bersama ScholarVein.</span>
+      </p>
     </div>
-    <div class="marquee" aria-label="Partner ScholarVein">
-      <div class="marquee-track">
-        <div class="marquee-item"><img src="partners/AOU.png" alt="AOU" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/BKT%20KEMENHUB.png" alt="BKT KEMENHUB" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/BMN%20Institute.png" alt="BMN Institute" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/CCC.png" alt="CCC" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Emerald.png" alt="Emerald" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/FEB%20UNISBA.png" alt="FEB UNISBA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Halal%20Science%20Center%20Chulalongkorn%20University.png" alt="Halal Science Center Chulalongkorn University" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/IPES%20BS.png" alt="IPES BS" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/PASCA%20UNAIR.png" alt="PASCA UNAIR" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/POLINES.png" alt="POLINES" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Perbanas.png" alt="Perbanas" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/SEARA.png" alt="SEARA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/SIU.png" alt="SIU" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Telkom%20Corp.png" alt="Telkom Corp" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Tongmyong%20University.png" alt="Tongmyong University" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UIA.png" alt="UIA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UMJ.png" alt="UMJ" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UP.png" alt="UP" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UPNYK.png" alt="UPNYK" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/WCC.png" alt="WCC" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/e-Halal.png" alt="e-Halal" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/fia%20ui.png" alt="fia ui" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/nwu%20%282%29.png" alt="nwu (2)" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/nwu.png" alt="nwu" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/13.png" alt="13" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/14.png" alt="14" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/15.png" alt="15" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/16.png" alt="16" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/17.png" alt="17" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/19.png" alt="19" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/20.png" alt="20" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/21.png" alt="21" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/22.png" alt="22" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/23.png" alt="23" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/24.png" alt="24" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/25.png" alt="25" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/26.png" alt="26" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/27.png" alt="27" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/28.png" alt="28" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/29.png" alt="29" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/30.png" alt="30" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/31.png" alt="31" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/32.png" alt="32" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/33.png" alt="33" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/34.png" alt="34" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/35.png" alt="35" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/36.png" alt="36" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/37.png" alt="37" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/38.png" alt="38" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/39.png" alt="39" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/40.png" alt="40" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/41.png" alt="41" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/42.png" alt="42" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/43.png" alt="43" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/AOU.png" alt="AOU" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/BKT%20KEMENHUB.png" alt="BKT KEMENHUB" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/BMN%20Institute.png" alt="BMN Institute" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/CCC.png" alt="CCC" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Emerald.png" alt="Emerald" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/FEB%20UNISBA.png" alt="FEB UNISBA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Halal%20Science%20Center%20Chulalongkorn%20University.png" alt="Halal Science Center Chulalongkorn University" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/IPES%20BS.png" alt="IPES BS" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/PASCA%20UNAIR.png" alt="PASCA UNAIR" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/POLINES.png" alt="POLINES" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Perbanas.png" alt="Perbanas" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/SEARA.png" alt="SEARA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/SIU.png" alt="SIU" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Telkom%20Corp.png" alt="Telkom Corp" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/Tongmyong%20University.png" alt="Tongmyong University" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UIA.png" alt="UIA" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UMJ.png" alt="UMJ" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UP.png" alt="UP" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/UPNYK.png" alt="UPNYK" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/WCC.png" alt="WCC" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/e-Halal.png" alt="e-Halal" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/fia%20ui.png" alt="fia ui" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/nwu%20%282%29.png" alt="nwu (2)" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/nwu.png" alt="nwu" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/13.png" alt="13" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/14.png" alt="14" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/15.png" alt="15" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/16.png" alt="16" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/17.png" alt="17" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/19.png" alt="19" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/20.png" alt="20" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/21.png" alt="21" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/22.png" alt="22" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/23.png" alt="23" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/24.png" alt="24" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/25.png" alt="25" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/26.png" alt="26" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/27.png" alt="27" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/28.png" alt="28" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/29.png" alt="29" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/30.png" alt="30" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/31.png" alt="31" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/32.png" alt="32" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/33.png" alt="33" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/34.png" alt="34" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/35.png" alt="35" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/36.png" alt="36" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/37.png" alt="37" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/38.png" alt="38" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/39.png" alt="39" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/40.png" alt="40" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/41.png" alt="41" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/42.png" alt="42" loading="lazy" /></div>
-        <div class="marquee-item"><img src="partners/43.png" alt="43" loading="lazy" /></div>
-      </div>
+    <div class="marquee" aria-label="ScholarVein partners">
+      <div class="marquee-track" id="marqueeTrack"></div>
     </div>
   </div>
 </section>
@@ -776,30 +647,60 @@
 <section id="masalah" class="section-alt">
   <div class="container">
     <div class="section-head">
-      <h2>Masih menerima submission lewat email dan spreadsheet?</h2>
-      <p>Banyak panitia konferensi kehilangan waktu berjam jam hanya untuk urusan administrasi. Berikut kondisi yang mungkin Anda alami saat ini.</p>
+      <h2>
+        <span data-lang="en">Still handling submissions through email and spreadsheets?</span>
+        <span data-lang="id">Masih menerima submission lewat email dan spreadsheet?</span>
+      </h2>
+      <p>
+        <span data-lang="en">Many organizing committees lose hours to administrative work. These are situations you may recognize right now.</span>
+        <span data-lang="id">Banyak panitia konferensi kehilangan waktu berjam jam hanya untuk urusan administrasi. Berikut kondisi yang mungkin Anda alami saat ini.</span>
+      </p>
     </div>
 
     <div class="problems">
       <div class="problem-card">
         <span class="num">01</span>
-        <h3>Naskah tercecer di kotak masuk</h3>
-        <p>Sulit melacak versi terbaru, mudah terlewat, dan rentan hilang saat panitia berganti.</p>
+        <h3>
+          <span data-lang="en">Papers scattered across inboxes</span>
+          <span data-lang="id">Naskah tercecer di kotak masuk</span>
+        </h3>
+        <p>
+          <span data-lang="en">Hard to track the latest version, easy to miss, and prone to loss when committee members change.</span>
+          <span data-lang="id">Sulit melacak versi terbaru, mudah terlewat, dan rentan hilang saat panitia berganti.</span>
+        </p>
       </div>
       <div class="problem-card">
         <span class="num">02</span>
-        <h3>Proses review tidak terlacak</h3>
-        <p>Komunikasi bolak balik dengan reviewer memakan waktu dan sulit dipantau kemajuannya.</p>
+        <h3>
+          <span data-lang="en">Review process without visibility</span>
+          <span data-lang="id">Proses review tidak terlacak</span>
+        </h3>
+        <p>
+          <span data-lang="en">Back and forth emails with reviewers waste time and progress is hard to monitor.</span>
+          <span data-lang="id">Komunikasi bolak balik dengan reviewer memakan waktu dan sulit dipantau kemajuannya.</span>
+        </p>
       </div>
       <div class="problem-card">
         <span class="num">03</span>
-        <h3>Data peserta tersebar</h3>
-        <p>Registrasi, pembayaran, dan konfirmasi hadir tercatat di file berbeda tanpa integrasi.</p>
+        <h3>
+          <span data-lang="en">Attendee data scattered</span>
+          <span data-lang="id">Data peserta tersebar</span>
+        </h3>
+        <p>
+          <span data-lang="en">Registration, payment, and attendance sit in different files with no integration.</span>
+          <span data-lang="id">Registrasi, pembayaran, dan konfirmasi hadir tercatat di file berbeda tanpa integrasi.</span>
+        </p>
       </div>
       <div class="problem-card">
         <span class="num">04</span>
-        <h3>Panitia kewalahan menjelang deadline</h3>
-        <p>Beban kerja menumpuk di minggu terakhir karena tidak ada sistem yang mengotomasi alur.</p>
+        <h3>
+          <span data-lang="en">Committee overwhelmed near deadlines</span>
+          <span data-lang="id">Panitia kewalahan menjelang deadline</span>
+        </h3>
+        <p>
+          <span data-lang="en">Workload piles up in the final weeks because no system automates the flow.</span>
+          <span data-lang="id">Beban kerja menumpuk di minggu terakhir karena tidak ada sistem yang mengotomasi alur.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -808,34 +709,76 @@
 <section id="solusi">
   <div class="container">
     <div class="section-head">
-      <h2>Satu sistem yang sederhana, terintegrasi, dan mudah digunakan.</h2>
-      <p>ScholarOSS adalah pintu masuk yang terjangkau menuju conference management yang profesional. Dirancang untuk institusi dengan anggaran terbatas namun tetap ingin menjaga kualitas penyelenggaraan.</p>
+      <h2>
+        <span data-lang="en">One system that is simple, integrated, and easy to use.</span>
+        <span data-lang="id">Satu sistem yang sederhana, terintegrasi, dan mudah digunakan.</span>
+      </h2>
+      <p>
+        <span data-lang="en">ScholarOSS is the affordable entry point to professional conference management. Built for institutions with limited budgets that still want to protect the quality of their events.</span>
+        <span data-lang="id">ScholarOSS adalah pintu masuk yang terjangkau menuju conference management yang profesional. Dirancang untuk institusi dengan anggaran terbatas namun tetap ingin menjaga kualitas penyelenggaraan.</span>
+      </p>
     </div>
 
     <div class="values">
       <div class="value-item">
-        <h3>Terjangkau</h3>
-        <p>Biaya sewa yang sesuai skala konferensi Anda. Jauh lebih hemat daripada membangun sistem sendiri.</p>
+        <h3>
+          <span data-lang="en">Affordable</span>
+          <span data-lang="id">Terjangkau</span>
+        </h3>
+        <p>
+          <span data-lang="en">A rental fee that scales with your conference. Far cheaper than building your own system.</span>
+          <span data-lang="id">Biaya sewa yang sesuai skala konferensi Anda. Jauh lebih hemat daripada membangun sistem sendiri.</span>
+        </p>
       </div>
       <div class="value-item">
-        <h3>Terintegrasi</h3>
-        <p>Submission, review, registrasi, dan pengumuman terhubung dalam satu portal. Dapat disesuaikan dengan kebutuhan Anda.</p>
+        <h3>
+          <span data-lang="en">Integrated</span>
+          <span data-lang="id">Terintegrasi</span>
+        </h3>
+        <p>
+          <span data-lang="en">Submission, review, registration, and announcements live in a single portal. Can be customized to your needs.</span>
+          <span data-lang="id">Submission, review, registrasi, dan pengumuman terhubung dalam satu portal. Dapat disesuaikan dengan kebutuhan Anda.</span>
+        </p>
       </div>
       <div class="value-item">
-        <h3>Mudah Digunakan</h3>
-        <p>Antarmuka yang bersih dan intuitif. Panitia dapat langsung menggunakannya setelah sesi pelatihan singkat.</p>
+        <h3>
+          <span data-lang="en">Easy to Use</span>
+          <span data-lang="id">Mudah Digunakan</span>
+        </h3>
+        <p>
+          <span data-lang="en">A clean and intuitive interface. Your team can start using it right after a short training session.</span>
+          <span data-lang="id">Antarmuka yang bersih dan intuitif. Panitia dapat langsung menggunakannya setelah sesi pelatihan singkat.</span>
+        </p>
       </div>
       <div class="value-item">
-        <h3>Implementasi Terpandu</h3>
-        <p>Tim kami membantu setup, memberikan tutorial, serta mendampingi selama dua minggu pertama.</p>
+        <h3>
+          <span data-lang="en">Guided Implementation</span>
+          <span data-lang="id">Implementasi Terpandu</span>
+        </h3>
+        <p>
+          <span data-lang="en">Our team helps with setup, delivers tutorials, and supports you throughout the first two weeks.</span>
+          <span data-lang="id">Tim kami membantu setup, memberikan tutorial, serta mendampingi selama dua minggu pertama.</span>
+        </p>
       </div>
       <div class="value-item">
-        <h3>Jalur Upgrade</h3>
-        <p>Saat konferensi Anda berkembang, tersedia layanan Co Organizer dan Dedicated Conference.</p>
+        <h3>
+          <span data-lang="en">Upgrade Path</span>
+          <span data-lang="id">Jalur Upgrade</span>
+        </h3>
+        <p>
+          <span data-lang="en">When your conference grows, Co Organizer and Dedicated Conference services are ready for you.</span>
+          <span data-lang="id">Saat konferensi Anda berkembang, tersedia layanan Co Organizer dan Dedicated Conference.</span>
+        </p>
       </div>
       <div class="value-item">
-        <h3>Kendali di Tangan Anda</h3>
-        <p>Biaya pendaftaran presenter dapat Anda tentukan sendiri sesuai kebijakan penyelenggara.</p>
+        <h3>
+          <span data-lang="en">You Stay in Control</span>
+          <span data-lang="id">Kendali di Tangan Anda</span>
+        </h3>
+        <p>
+          <span data-lang="en">You decide the presenter registration fee based on your own policy.</span>
+          <span data-lang="id">Biaya pendaftaran presenter dapat Anda tentukan sendiri sesuai kebijakan penyelenggara.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -844,34 +787,67 @@
 <section id="alur" class="section-dark">
   <div class="container">
     <div class="section-head">
-      <h2>Enam langkah dari perencanaan hingga go live.</h2>
-      <p>Proses yang jelas dan terstruktur sehingga Anda tahu persis apa yang terjadi di setiap tahap.</p>
+      <h2>
+        <span data-lang="en">Six steps from planning to go live.</span>
+        <span data-lang="id">Enam langkah dari perencanaan hingga go live.</span>
+      </h2>
+      <p>
+        <span data-lang="en">A clear and structured process so you know exactly what happens at every stage.</span>
+        <span data-lang="id">Proses yang jelas dan terstruktur sehingga Anda tahu persis apa yang terjadi di setiap tahap.</span>
+      </p>
     </div>
 
     <div class="journey">
       <div class="step">
         <h3>Assessment</h3>
-        <p>Kami memetakan kebutuhan konferensi Anda bersama tim penyelenggara.</p>
+        <p>
+          <span data-lang="en">We map your conference needs together with your organizing team.</span>
+          <span data-lang="id">Kami memetakan kebutuhan konferensi Anda bersama tim penyelenggara.</span>
+        </p>
       </div>
       <div class="step">
         <h3>MoA</h3>
-        <p>Penandatanganan kesepakatan kerja sama sebagai dasar layanan.</p>
+        <p>
+          <span data-lang="en">Signing the memorandum of agreement as the foundation of the engagement.</span>
+          <span data-lang="id">Penandatanganan kesepakatan kerja sama sebagai dasar layanan.</span>
+        </p>
       </div>
       <div class="step">
-        <h3>Subdomain Konferensi</h3>
-        <p>Kami siapkan portal konferensi dengan subdomain khusus Anda.</p>
+        <h3>
+          <span data-lang="en">Conference Subdomain</span>
+          <span data-lang="id">Subdomain Konferensi</span>
+        </h3>
+        <p>
+          <span data-lang="en">We set up your conference portal with your own dedicated subdomain.</span>
+          <span data-lang="id">Kami siapkan portal konferensi dengan subdomain khusus Anda.</span>
+        </p>
       </div>
       <div class="step">
-        <h3>Tutorial dan Pelatihan</h3>
-        <p>Sesi panduan penggunaan sistem untuk panitia inti.</p>
+        <h3>
+          <span data-lang="en">Tutorial and Training</span>
+          <span data-lang="id">Tutorial dan Pelatihan</span>
+        </h3>
+        <p>
+          <span data-lang="en">A guided session on how to use the system for your core committee.</span>
+          <span data-lang="id">Sesi panduan penggunaan sistem untuk panitia inti.</span>
+        </p>
       </div>
       <div class="step">
-        <h3>Pendampingan Dua Minggu</h3>
-        <p>Tim support kami siap membantu selama masa transisi awal.</p>
+        <h3>
+          <span data-lang="en">Two Week Support</span>
+          <span data-lang="id">Pendampingan Dua Minggu</span>
+        </h3>
+        <p>
+          <span data-lang="en">Our support team is on hand throughout the initial transition period.</span>
+          <span data-lang="id">Tim support kami siap membantu selama masa transisi awal.</span>
+        </p>
       </div>
       <div class="step">
         <h3>Go Live</h3>
-        <p>Konferensi Anda siap menerima submission dari registrant.</p>
+        <p>
+          <span data-lang="en">Your conference is ready to receive submissions from registrants.</span>
+          <span data-lang="id">Konferensi Anda siap menerima submission dari registrant.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -880,25 +856,49 @@
 <section id="segmen">
   <div class="container">
     <div class="section-head">
-      <h2>Dirancang untuk institusi yang serius menyelenggarakan konferensi.</h2>
+      <h2>
+        <span data-lang="en">Built for institutions serious about running conferences.</span>
+        <span data-lang="id">Dirancang untuk institusi yang serius menyelenggarakan konferensi.</span>
+      </h2>
     </div>
 
     <div class="targets">
       <div class="target">
-        <h3>Universitas dan Fakultas</h3>
-        <p>Menyelenggarakan konferensi akademik tanpa perlu tim IT internal yang besar.</p>
+        <h3>
+          <span data-lang="en">Universities and Faculties</span>
+          <span data-lang="id">Universitas dan Fakultas</span>
+        </h3>
+        <p>
+          <span data-lang="en">Run academic conferences without needing a large in house IT team.</span>
+          <span data-lang="id">Menyelenggarakan konferensi akademik tanpa perlu tim IT internal yang besar.</span>
+        </p>
       </div>
       <div class="target">
         <h3>Research Center</h3>
-        <p>Memfasilitasi diseminasi hasil riset dengan sistem yang kredibel.</p>
+        <p>
+          <span data-lang="en">Support research dissemination with a credible and reliable system.</span>
+          <span data-lang="id">Memfasilitasi diseminasi hasil riset dengan sistem yang kredibel.</span>
+        </p>
       </div>
       <div class="target">
-        <h3>Penyelenggara Pertama Kali</h3>
-        <p>Punya panduan lengkap dan pendampingan agar konferensi pertama berjalan lancar.</p>
+        <h3>
+          <span data-lang="en">First Time Organizers</span>
+          <span data-lang="id">Penyelenggara Pertama Kali</span>
+        </h3>
+        <p>
+          <span data-lang="en">Get a complete guide and hands on support so your first conference runs smoothly.</span>
+          <span data-lang="id">Punya panduan lengkap dan pendampingan agar konferensi pertama berjalan lancar.</span>
+        </p>
       </div>
       <div class="target">
-        <h3>Organizer yang Ingin Naik Kelas</h3>
-        <p>Beralih dari email dan spreadsheet ke sistem yang lebih profesional.</p>
+        <h3>
+          <span data-lang="en">Organizers Ready to Level Up</span>
+          <span data-lang="id">Organizer yang Ingin Naik Kelas</span>
+        </h3>
+        <p>
+          <span data-lang="en">Move from email and spreadsheets to a more professional system.</span>
+          <span data-lang="id">Beralih dari email dan spreadsheet ke sistem yang lebih profesional.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -908,29 +908,50 @@
   <div class="container">
     <div class="two-col">
       <div>
-        <h2 style="margin-bottom: 20px;">Lima alasan ScholarOSS cocok untuk Anda.</h2>
-        <p>Kami percaya bahwa setiap konferensi ilmiah berhak mendapatkan sistem yang layak, tanpa harus menguras anggaran atau menunggu tim developer.</p>
+        <h2 style="margin-bottom: 20px;">
+          <span data-lang="en">Five reasons ScholarOSS fits your needs.</span>
+          <span data-lang="id">Lima alasan ScholarOSS cocok untuk Anda.</span>
+        </h2>
+        <p>
+          <span data-lang="en">We believe every academic conference deserves a proper system, without burning through the budget or waiting on a developer team.</span>
+          <span data-lang="id">Kami percaya bahwa setiap konferensi ilmiah berhak mendapatkan sistem yang layak, tanpa harus menguras anggaran atau menunggu tim developer.</span>
+        </p>
       </div>
       <ul class="message-list">
         <li>
           <span class="m-num">1.</span>
-          <span class="m-text">Anda tidak perlu membangun sistem sendiri.</span>
+          <span class="m-text">
+            <span data-lang="en">You do not need to build a system yourself.</span>
+            <span data-lang="id">Anda tidak perlu membangun sistem sendiri.</span>
+          </span>
         </li>
         <li>
           <span class="m-num">2.</span>
-          <span class="m-text">Conference management yang sederhana dan profesional.</span>
+          <span class="m-text">
+            <span data-lang="en">Simple and professional conference management.</span>
+            <span data-lang="id">Conference management yang sederhana dan profesional.</span>
+          </span>
         </li>
         <li>
           <span class="m-num">3.</span>
-          <span class="m-text">Didampingi dari awal hingga siap menerima submission.</span>
+          <span class="m-text">
+            <span data-lang="en">Guided from the start until you are ready to receive submissions.</span>
+            <span data-lang="id">Didampingi dari awal hingga siap menerima submission.</span>
+          </span>
         </li>
         <li>
           <span class="m-num">4.</span>
-          <span class="m-text">Bayar sesuai skala konferensi Anda.</span>
+          <span class="m-text">
+            <span data-lang="en">Pay according to the scale of your conference.</span>
+            <span data-lang="id">Bayar sesuai skala konferensi Anda.</span>
+          </span>
         </li>
         <li>
           <span class="m-num">5.</span>
-          <span class="m-text">Tumbuh bersama kebutuhan konferensi di masa depan.</span>
+          <span class="m-text">
+            <span data-lang="en">Grow with the needs of your future conferences.</span>
+            <span data-lang="id">Tumbuh bersama kebutuhan konferensi di masa depan.</span>
+          </span>
         </li>
       </ul>
     </div>
@@ -941,19 +962,35 @@
   <div class="container">
     <div class="quote-card">
       <blockquote>
-        &ldquo;Conference Management Made Simple. Dari persiapan hingga go live, kami dampingi.&rdquo;
+        <span data-lang="en">&ldquo;Conference Management Made Simple. From preparation to go live, we walk beside you.&rdquo;</span>
+        <span data-lang="id">&ldquo;Conference Management Made Simple. Dari persiapan hingga go live, kami dampingi.&rdquo;</span>
       </blockquote>
-      <cite>Filosofi kerja tim ScholarVein.</cite>
+      <cite>
+        <span data-lang="en">The working philosophy of the ScholarVein team.</span>
+        <span data-lang="id">Filosofi kerja tim ScholarVein.</span>
+      </cite>
     </div>
   </div>
 </section>
 
 <section id="konsultasi" class="cta-section">
   <div class="container">
-    <h2>Siap menyelenggarakan konferensi Anda?</h2>
-    <p>Jadwalkan sesi konsultasi gratis dengan tim kami. Kami akan bantu Anda memahami kebutuhan, alur kerja, dan cara memulai dengan ScholarOSS.</p>
-    <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="btn-primary">Jadwalkan Konsultasi</a>
-    <div class="cta-note">Tanpa biaya konsultasi. Tanpa komitmen di awal.</div>
+    <h2>
+      <span data-lang="en">Ready to run your conference?</span>
+      <span data-lang="id">Siap menyelenggarakan konferensi Anda?</span>
+    </h2>
+    <p>
+      <span data-lang="en">Schedule a free consultation with our team. We will help you understand your needs, the workflow, and how to get started with ScholarOSS.</span>
+      <span data-lang="id">Jadwalkan sesi konsultasi gratis dengan tim kami. Kami akan bantu Anda memahami kebutuhan, alur kerja, dan cara memulai dengan ScholarOSS.</span>
+    </p>
+    <a href="https://wa.me/62811227479" target="_blank" rel="noopener" class="btn-primary">
+      <span data-lang="en">Schedule Consultation</span>
+      <span data-lang="id">Jadwalkan Konsultasi</span>
+    </a>
+    <div class="cta-note">
+      <span data-lang="en">No consultation fee. No commitment upfront.</span>
+      <span data-lang="id">Tanpa biaya konsultasi. Tanpa komitmen di awal.</span>
+    </div>
   </div>
 </section>
 
@@ -963,10 +1000,16 @@
       <div class="footer-brand-block">
         <img src="logo-scholaross.png" alt="ScholarOSS by ScholarVein" class="footer-brand-logo" />
         <div class="footer-tag">ScholarOSS <span>by</span> ScholarVein</div>
-        <p>ScholarOSS adalah bagian dari layanan ScholarVein untuk mendukung penyelenggaraan konferensi ilmiah yang profesional.</p>
+        <p>
+          <span data-lang="en">ScholarOSS is part of the ScholarVein family, built to support the delivery of professional academic conferences.</span>
+          <span data-lang="id">ScholarOSS adalah bagian dari layanan ScholarVein untuk mendukung penyelenggaraan konferensi ilmiah yang profesional.</span>
+        </p>
       </div>
       <div>
-        <h4>Produk</h4>
+        <h4>
+          <span data-lang="en">Product</span>
+          <span data-lang="id">Produk</span>
+        </h4>
         <ul>
           <li><a href="#solusi">ScholarOSS</a></li>
           <li><a href="#">Co Organizer</a></li>
@@ -974,20 +1017,84 @@
         </ul>
       </div>
       <div>
-        <h4>Kontak</h4>
+        <h4>
+          <span data-lang="en">Contact</span>
+          <span data-lang="id">Kontak</span>
+        </h4>
         <ul>
           <li><a href="https://wa.me/62811227479" target="_blank" rel="noopener">WhatsApp: 0811 227 479</a></li>
-          <li><a href="https://wa.me/62811227479" target="_blank" rel="noopener">Jadwalkan Konsultasi</a></li>
-          <li><a href="#">Pusat Bantuan</a></li>
+          <li>
+            <a href="https://wa.me/62811227479" target="_blank" rel="noopener">
+              <span data-lang="en">Schedule Consultation</span>
+              <span data-lang="id">Jadwalkan Konsultasi</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span data-lang="en">Help Center</span>
+              <span data-lang="id">Pusat Bantuan</span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>&copy; 2026 ScholarVein. Semua hak dilindungi.</div>
+      <div>
+        <span data-lang="en">&copy; 2026 ScholarVein. All rights reserved.</span>
+        <span data-lang="id">&copy; 2026 ScholarVein. Semua hak dilindungi.</span>
+      </div>
       <div>ScholarOSS by ScholarVein</div>
     </div>
   </div>
 </footer>
+
+<script>
+  // Language switcher
+  (function() {
+    const STORAGE_KEY = 'scholaross-lang';
+    const supported = ['en', 'id'];
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const initial = supported.includes(stored) ? stored : 'en';
+
+    function setLang(lang) {
+      if (!supported.includes(lang)) return;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.langBtn === lang);
+        btn.setAttribute('aria-pressed', btn.dataset.langBtn === lang);
+      });
+      localStorage.setItem(STORAGE_KEY, lang);
+    }
+
+    setLang(initial);
+    document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.langBtn));
+    });
+  })();
+
+  // Populate partner marquee dynamically (duplicated for seamless loop)
+  (function() {
+    const track = document.getElementById('marqueeTrack');
+    if (!track) return;
+    const partners = [
+      'AOU.png','BKT KEMENHUB.png','BMN Institute.png','CCC.png','Emerald.png',
+      'FEB UNISBA.png','Halal Science Center Chulalongkorn University.png','IPES BS.png',
+      'PASCA UNAIR.png','POLINES.png','Perbanas.png','SEARA.png','SIU.png',
+      'Telkom Corp.png','Tongmyong University.png','UIA.png','UMJ.png','UP.png',
+      'UPNYK.png','WCC.png','e-Halal.png','fia ui.png','nwu (2).png','nwu.png',
+      '13.png','14.png','15.png','16.png','17.png','19.png','20.png','21.png',
+      '22.png','23.png','24.png','25.png','26.png','27.png','28.png','29.png',
+      '30.png','31.png','32.png','33.png','34.png','35.png','36.png','37.png',
+      '38.png','39.png','40.png','41.png','42.png','43.png'
+    ];
+    const html = partners.map(f => {
+      const alt = f.replace(/\.png$/, '');
+      const src = 'partners/' + encodeURIComponent(f);
+      return `<div class="marquee-item"><img src="${src}" alt="${alt}" loading="lazy" /></div>`;
+    }).join('');
+    track.innerHTML = html + html;
+  })();
+</script>
 
 </body>
 </html>
